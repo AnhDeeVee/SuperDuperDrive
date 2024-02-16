@@ -8,6 +8,23 @@ public class Credentials {
     private Integer userid;
     private String username;
 
+    public Credentials() {}
+
+    public Credentials(Integer credentialid, String url, String userName, String key, String password, Integer userid) {
+        this.credentialid = credentialid;
+        this.url = url;
+        this.username = userName;
+        this.key = key;
+        this.password = password;
+        this.userid = userid;
+    }
+
+    public Credentials(String url, String userName, String password) {
+        this.url = url;
+        this.username = userName;
+        this.password = password;
+    }
+
     public Integer getCredentialid() {
         return credentialid;
     }

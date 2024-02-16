@@ -18,10 +18,9 @@ import java.util.concurrent.TimeUnit;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class CloudStorageApplicationTests {
 
+	protected WebDriver driver;
 	@LocalServerPort
-	private int port;
-
-	private WebDriver driver;
+	protected int port;
 
 	@BeforeAll
 	static void beforeAll() {
@@ -202,6 +201,21 @@ class CloudStorageApplicationTests {
 
 	}
 
+	protected HomePage signUpAndLogin() {
+		driver.get("http://localhost:" + this.port + "/signup");
+		SignupPage signupPage = new SignupPage(driver);
+		signupPage.setFirstName("Anh");
+		signupPage.setLastName("DeeVee");
+		signupPage.setUserName("anhdv21");
+		signupPage.setPassword("abc123");
+		signupPage.signUp();
+		driver.get("http://localhost:" + this.port + "/login");
+		LoginPage loginPage = new LoginPage(driver);
+		loginPage.setUserName("anhdv21");
+		loginPage.setPassword("abc123");
+		loginPage.login();
 
+		return new HomePage(driver);
+	}
 
 }
